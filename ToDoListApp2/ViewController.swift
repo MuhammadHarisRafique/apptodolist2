@@ -106,9 +106,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             structObect.myTask.removeAtIndex(index!)
             structObect.Description.removeAtIndex(index!)
+            structObect.photo.removeAtIndex(index!)
             self.cancelbarButtonOutlet.enabled = false
             self.editBarButtonOutlet.enabled = false
-            tblview.reloadData()
+           tblview.reloadData()
         }
     }
     
