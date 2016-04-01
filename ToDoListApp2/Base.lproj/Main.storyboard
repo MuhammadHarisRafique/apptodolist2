@@ -19,6 +19,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcu-P7-ROJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="JRj-FT-IC4"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.99366205910000005" green="1" blue="0.14825672989999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="My Task" id="v5O-m2-FaF">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="ktL-7G-nCj">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="addBarButton:" destination="BYZ-38-t0r" id="Z6G-PO-Oi7"/>
+                                                <segue destination="QHj-CD-M4G" kind="show" identifier="viewController2" id="89R-hd-QZm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="edit" id="giT-cY-ckd">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="editBarButtonAction:" destination="BYZ-38-t0r" id="rmb-Oo-byg"/>
+                                                    <segue destination="QHj-CD-M4G" kind="show" identifier="editsegue" id="Ejw-xc-3FA"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Delete" id="D3A-74-DWx">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="cancelbarButtonAction:" destination="BYZ-38-t0r" id="79F-Pp-azI"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="143" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k3m-Oq-atN">
                                 <rect key="frame" x="0.0" y="69" width="320" height="499"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,42 +125,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="705-g4-O6Y"/>
                                 </connections>
                             </tableView>
-                            <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcu-P7-ROJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="JRj-FT-IC4"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.99366205910000005" green="1" blue="0.14825672989999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="My Task" id="v5O-m2-FaF">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="ktL-7G-nCj">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="addBarButton:" destination="BYZ-38-t0r" id="Z6G-PO-Oi7"/>
-                                                <segue destination="QHj-CD-M4G" kind="show" identifier="viewController2" id="89R-hd-QZm"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <rightBarButtonItems>
-                                            <barButtonItem systemItem="edit" id="giT-cY-ckd">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="editBarButtonAction:" destination="BYZ-38-t0r" id="rmb-Oo-byg"/>
-                                                    <segue destination="QHj-CD-M4G" kind="show" identifier="editsegue" id="Ejw-xc-3FA"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem title="Delete" id="D3A-74-DWx">
-                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="cancelbarButtonAction:" destination="BYZ-38-t0r" id="79F-Pp-azI"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -196,22 +196,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gES-Zj-1kx">
-                                <rect key="frame" x="214" y="195" width="90" height="42"/>
-                                <color key="backgroundColor" red="0.99366205910000005" green="1" blue="0.14825672989999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="aYo-RH-cxV"/>
-                                    <constraint firstAttribute="height" constant="42" id="gmP-7g-dgh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnSaveAction:" destination="QHj-CD-M4G" eventType="touchUpInside" id="C39-3L-Mlv"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="saveIdentifier" id="PVx-yb-U9e"/>
-                                </connections>
-                            </button>
                             <navigationBar opaque="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amz-9M-PRB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <constraints>
@@ -296,6 +280,22 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gES-Zj-1kx">
+                                <rect key="frame" x="214" y="195" width="90" height="42"/>
+                                <color key="backgroundColor" red="0.99366205910000005" green="1" blue="0.14825672989999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="aYo-RH-cxV"/>
+                                    <constraint firstAttribute="height" constant="42" id="gmP-7g-dgh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSaveAction:" destination="QHj-CD-M4G" eventType="touchUpInside" id="C39-3L-Mlv"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="saveIdentifier" id="PVx-yb-U9e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

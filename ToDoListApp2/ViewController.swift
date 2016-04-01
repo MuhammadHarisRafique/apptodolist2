@@ -10,65 +10,74 @@ import UIKit
 
 struct TaskStruct {
     
-    var myTask: [String] = []
-    var Description: [String] = []
-    var photo: [String] = []
-
+    var myTask: String?
+    var Description: String?
+    var photo: String?
+    static var structArray: [TaskStruct] = []
+    
 }
+
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     var index: Int?
-    var task: String?
-    var descrip: String?
-    var img: String?
-    
-    var structObect = TaskStruct()
     
     @IBOutlet weak var editBarButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var tblview: UITableView!
     @IBOutlet weak var cancelbarButtonOutlet: UIBarButtonItem!
-   
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.cancelbarButtonOutlet.enabled = false
         self.editBarButtonOutlet.enabled = false
-        if task != "" && task != nil
-        {
-    
-            
-            structObect.myTask.append(task!)
-            structObect.Description.append(descrip!)
-            structObect.photo.append(img!)
-            tblview.reloadData()
-        }
         
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let mycell: CustomCellTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell") as! CustomCellTableViewCell
+        
         mycell.ViewInCellOutlet.layer.cornerRadius = 5
-        mycell.lblTask.text = structObect.myTask[indexPath.row]
-        mycell.lblDescription.text = structObect.Description[indexPath.row]
-      mycell.photoImageViewOutlet.image = UIImage(named: structObect.photo[indexPath.row])
-    
-      
+        
+        if  TaskStruct.structArray.count == 0
+            
+        {
+            return mycell
+        }
+        
+        mycell.lblTask.text = TaskStruct.structArray[indexPath.row].myTask
+        mycell.lblDescription.text = TaskStruct.structArray[indexPath.row].Description
+        mycell.photoImageViewOutlet.image = UIImage(named:TaskStruct.structArray[indexPath.row].photo!)
+        
+        
+        
+        
         return mycell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return structObect.myTask.count
-   
+        if TaskStruct.structArray.count == 0
+        {
+            
+            return 0
+            
+        }
+        
+        return TaskStruct.structArray.count
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        
         index = indexPath.row
         self.cancelbarButtonOutlet.enabled = true
         self.editBarButtonOutlet.enabled = true
-        print(index)
         
         
     }
@@ -77,45 +86,46 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let mysegue2: AddTaskController = segue.destinationViewController as! AddTaskController
         if segue.identifier == "editsegue"
         {
-            mysegue2.labelDescriptionText =  structObect.Description[index!]
-            mysegue2.labelTaskText = structObect.myTask[index!]
-            mysegue2.addImage = structObect.photo[index!]
+            
+            
             mysegue2.updateCondition = true
             mysegue2.saveCondition = false
             mysegue2.index2 = index
-            mysegue2.structObject2 = structObect
-  
-        }
-        if segue.identifier == "viewController2"
             
-        {
-            mysegue2.structObject2 = structObect
+            print(index)
+            print(TaskStruct.structArray[index!])
+            
+            mysegue2.labelTaskText = TaskStruct.structArray[index!].myTask
+            mysegue2.labelDescriptionText = TaskStruct.structArray[index!].Description
+            mysegue2.addImage = TaskStruct.structArray[index!].photo
             
         }
         
     }
     
     @IBAction func addBarButton(sender: AnyObject)
+        
     {
-        performSegueWithIdentifier("viewController2", sender: sender)
+        
     }
     
     @IBAction func cancelbarButtonAction(sender: UIBarButtonItem)
     {
         if index != nil
+            
         {
-            structObect.myTask.removeAtIndex(index!)
-            structObect.Description.removeAtIndex(index!)
-            structObect.photo.removeAtIndex(index!)
+            TaskStruct.structArray.removeAtIndex(index!)
             self.cancelbarButtonOutlet.enabled = false
             self.editBarButtonOutlet.enabled = false
-           tblview.reloadData()
+            tblview.reloadData()
+            
         }
+        
     }
     
     @IBAction func editBarButtonAction(sender: UIBarButtonItem)
     {
-        performSegueWithIdentifier("editsegue", sender: sender)
+        
         
     }
     

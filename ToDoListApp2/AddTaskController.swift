@@ -15,11 +15,8 @@ class AddTaskController: UIViewController {
     var updateCondition: Bool?
     var saveCondition: Bool?
     var index2: Int?
-    var forArrayTask: [String]?
-    var forArrayDes:[String]?
     var addImage: String?
     
-    var structObject2 = TaskStruct()
     
     @IBOutlet weak var btnSaveOutlet: UIButton!
     @IBOutlet weak var btnUpdateOutlet: UIButton!
@@ -32,6 +29,7 @@ class AddTaskController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.btnSaveOutlet.layer.cornerRadius = 10
         self.btnUpdateOutlet.layer.cornerRadius = 10
         self.btnUpdateOutlet.enabled = false
@@ -43,93 +41,73 @@ class AddTaskController: UIViewController {
         self.btnImage3.clipsToBounds = true
         
         if labelTaskText != "" && labelTaskText != nil
+            
         {
+            
             tbxtask.text = labelTaskText
             tbxDescription.text = labelDescriptionText
             btnUpdateOutlet.enabled = updateCondition!
             btnSaveOutlet.enabled = saveCondition!
             btnSaveOutlet.alpha = 0.2
+            
         }
         
     }
     
     @IBAction func updateButtonAction(sender: AnyObject)
-    {
-        if tbxtask.text != "" && tbxDescription.text != ""
-        {
-            performSegueWithIdentifier("updateIdentifier", sender: sender)
-        }
-    }
- 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let mysegue: ViewController = segue.destinationViewController as! ViewController
+    {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+        
+    {
+        
         if segue.identifier == "saveIdentifier"
         {
             
-            mysegue.task = tbxtask.text
-            mysegue.descrip = tbxDescription.text
-            mysegue.img = addImage
+            let objStruct = TaskStruct(myTask: tbxtask.text, Description: tbxDescription.text!, photo: addImage!)
+            TaskStruct.structArray.append(objStruct)
             
-           mysegue.structObect = structObject2
+            
             
         }
+        
         if segue.identifier == "updateIdentifier"
-        {
-            print(index2)
             
-            mysegue.structObect = structObject2
-            mysegue.structObect.myTask[index2!] = tbxtask.text!
-            mysegue.structObect.Description[index2!] = tbxDescription.text!
-            mysegue.structObect.photo[index2!] = addImage!
+        {
+            let objStruct = TaskStruct(myTask: tbxtask.text, Description: tbxDescription.text!, photo: addImage!)
+            TaskStruct.structArray.insert(objStruct, atIndex: index2!)
             
         }
     }
     
     @IBAction func btnSaveAction(sender: AnyObject)
+        
     {
-        if tbxtask.text != "" && tbxDescription.text != ""
-        {
-            performSegueWithIdentifier("saveIdentifier", sender: sender)
-        }
     }
     
     
     @IBAction func btnImageAction1(sender: AnyObject)
+        
     {
         addImage = "c.jpg"
         
         
     }
     
-    
-    
     @IBAction func btnImageAction2(sender: AnyObject)
+        
     {
         addImage = "b.jpg"
         
     }
-    
-    
     
     @IBAction func btnImageAction3(sender: AnyObject)
     {
         addImage = "a.jpg"
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
