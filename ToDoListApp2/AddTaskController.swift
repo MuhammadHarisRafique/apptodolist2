@@ -63,6 +63,7 @@ class AddTaskController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
         
     {
+        let mysegue: ViewController = segue.destinationViewController as! ViewController
         
         if segue.identifier == "saveIdentifier"
         {
@@ -77,8 +78,10 @@ class AddTaskController: UIViewController {
         if segue.identifier == "updateIdentifier"
             
         {
-            let objStruct = TaskStruct(myTask: tbxtask.text, Description: tbxDescription.text!, photo: addImage!)
-            TaskStruct.structArray.insert(objStruct, atIndex: index2!)
+            mysegue.updateMyTask = tbxtask.text
+            mysegue.updateDescription = tbxDescription.text
+            mysegue.updatePhoto = addImage
+            mysegue.index = index2
             
         }
     }

@@ -21,6 +21,9 @@ struct TaskStruct {
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     var index: Int?
+    var updateMyTask: String?
+    var updateDescription: String?
+    var updatePhoto: String?
     
     @IBOutlet weak var editBarButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var tblview: UITableView!
@@ -33,6 +36,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.cancelbarButtonOutlet.enabled = false
         self.editBarButtonOutlet.enabled = false
+        if updateMyTask != "" && updateMyTask != nil
+        {
+            print(updateMyTask)
+            print(index)
+        
+            TaskStruct.structArray[index!].myTask = updateMyTask
+            TaskStruct.structArray[index!].Description = updateDescription
+            TaskStruct.structArray[index!].photo = updatePhoto
+        }
         
     }
     
